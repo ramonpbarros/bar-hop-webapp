@@ -40,20 +40,19 @@ function getBreweryDataUsingZip(zipCodeSearch){
         // Create an array of cards
         for(var i = 0; i < response.length; i++){
             var card = $("<div class='card align-middle color'>")
-            var cardDivider = $("<div class='card-divider color'>")
             var cardDividerButtons = $("<div class='card-divider color'>")
             var cardSection = $("<div class='card-section'>")
-            $(card).append(cardDivider)
-            $(cardSection).append("<a href='"+response[i].url+"'> <h5>Bar Name: "+response[i].name+"</h5></a>")
+
+            $(cardSection).append("<h5>Bar Name: </h5><a target='_blank' href='"+response[i].url+"'> <h5>"+response[i].name+"</h5></a>")
             $(cardSection).append("<h5> Bar Type: "+response[i].brewery_type+"</h5>")
             $(cardSection).append("<h5> Bar Address: "+response[i].street+"</h5>")
             $(cardSection).append("<h5> Phone #:"+response[i].phone+"</h5>")
-            $(cardDividerButtons).append("<a class='button primary ' id='favorites-button' style='margin-bottom: 16px;'>Add To Favs</a>")
-            $(cardDividerButtons).append("<a class='button primary ' id='route-button' style='margin-bottom: 16px;'>Add To Route</a>")
-            $(card).append("<br>");
+            $(cardDividerButtons).append("<a class='button change-button' id='favorites-button'>Add To Favs</a>")
+            $(cardDividerButtons).append("<a class='button change-button' id='route-button'>Add To Route</a>")
             $(card).append(cardSection)
             $(card).append(cardDividerButtons)
             $("#append-card").append(card)
+            $("#append-card").append("<br>");
         }
         // Create cards for each element in the array
         console.log(response)
@@ -74,6 +73,7 @@ function getBreweryDataUsingZipAndType(zipCodeSearch,type){
 // ========================= Events ============================
 // Event when search button is pressed
 $("#search-button").on("click", function(){
+    $("#append-card").empty();
     zipCodeInput = getZipCodeInput("#zip-code");
     typeInput = $("#bar-type").val();
     console.log(typeInput);

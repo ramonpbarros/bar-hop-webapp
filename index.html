@@ -12,21 +12,10 @@
     integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
     crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/styles/style.css">
-  <style>
-    .card {
-      width: 75%; 
-      height: 300px; 
-      margin: 0 auto; 
-
-    }
-    .color {
-      background-color: burlywood;
-    }
-  </style>
 </head>
 
-<body>
-  <div class="title-bar" data-responsive-toggle="main-nav" data-hide-for="xxxlarge">
+<body style="background-color: #cdc6b3;">
+  <div class="title-bar nav-color" data-responsive-toggle="main-nav" data-hide-for="xxxlarge">
     <button class="menu-icon" type="button" data-toggle="main-nav"></button>
     <div class="title-bar-title"></div>
   </div>
@@ -56,7 +45,7 @@
       <div class="card align-middle color">
         <div class="card-divider color">
           <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
-          <a class="button primary " id="search-button">Search</a>
+          <a class="button change-button" id="search-button">Search</a>
         </div>
         <div class="card-divider color">
           <label>What kind of Bars?
@@ -98,11 +87,8 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
   <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/api.js"></script>
   <script>
     $(document).foundation();
-
-    
   </script>
 
 
