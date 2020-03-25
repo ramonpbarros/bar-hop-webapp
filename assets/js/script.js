@@ -53,7 +53,7 @@ var data;
 $("#search-button").on("click", function(){
     zipCodeInput = getZipCodeInput("#zip-code");
     typeInput = $("#bar-type").val();
-    console.log(typeInput);
+    
     if(typeInput === "all"){
         data = getBreweryDataUsingZip(zipCodeInput);
     }else{
