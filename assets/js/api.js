@@ -1,5 +1,5 @@
 // =======================================For Testing===============================
-var barId = [5494, 299, 2, 44]
+var barId = [286, 430, 573, 814, ]
 
 
 //To test values saved in local storage
@@ -21,6 +21,9 @@ var barCoords = [];
 
 var firstBarLat;
 var firstBarLng;
+
+var nextBarLat;
+var nextBarLng;
 
 //Marker labels
 var markerLabels = "ABCDEFIGHIJKLMNOPQRSTUVWXYZ";
@@ -46,29 +49,46 @@ $.ajax({
 
 }).then(function(result){
 
-    barCoords.push(result.name)
-    barCoords.push(parseFloat(result.latitude))
-    barCoords.push(parseFloat(result.longitude))
+    //Saving lat and lng to firstBar variables
+    firstBarLat = parseFloat(result.latitude)
+    firstBarLng = parseFloat(result.longitude)
 
-    firstBarLat = barCoords[1]
-    firstBarLng = barCoords[2]
+    //Creates a map for using the first bar as the center
     displayMap(firstBarLat,firstBarLng)
+
+    //Creating a marker for that first bar
     displayMarker(firstBarLat,firstBarLng)
 
+    //Ajax call for lat and lng of the rest if the bars
+    for(var i = 1; i < barId.length;i++){
+
+        $.ajax({
+            
+            url: "https://api.openbrewerydb.org/breweries/" + barId[i],
+            method: "GET"
+            
+        }).then(function(result){
+            var nextBarLat = parseFloat(result.latitude)
+            var nextBarLng = parseFloat(result.longitude)
+            displayMarker(nextBarLat, nextBarLng)
+        })
+    } 
 })
 
 //Creates map based on the first bar saved
 function displayMap(lat, lng){
 
-    //Creates and display a new map
+    //Creates and displays a new map
     map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: lat, lng: lng},
-        zoom: 15
+        zoom: 10
     });
 }
 
 //Displays a marker on each of the  bars saved
 function  displayMarker(lat, lng){
+
+    //Creates a new marker
     var marker = new google.maps.Marker({
         position: {lat: lat, lng: lng}, 
         map: map,
