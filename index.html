@@ -12,6 +12,17 @@
     integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
     crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/styles/style.css">
+  <style>
+    .card {
+      width: 75%; 
+      height: 300px; 
+      margin: 0 auto; 
+
+    }
+    .color {
+      background-color: burlywood;
+    }
+  </style>
 </head>
 
 <body>
@@ -42,14 +53,14 @@
     <div class="cell small-1 medium-3 large-4"></div>
     <!-- some styling to get a card for searching centered on the page -->
     <div class="cell auto">
-      <div class="card align-middle" style="width: 75%; height: 300px; margin: 0 auto; background-color: burlywood;">
-        <div class="card-divider" style="background-color: burlywood;">
+      <div class="card align-middle color">
+        <div class="card-divider color">
           <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
           <a class="button primary " id="search-button">Search</a>
         </div>
-        <div class="card-divider" style="background-color: burlywood;">
+        <div class="card-divider color">
           <label>What kind of Bars?
-            <select multiple id="bar-type">
+            <select id="bar-type">
               <option value="all">All</option>
               <option value="micro">Micro</option>
               <option value="local">Local</option>
@@ -72,24 +83,7 @@
 
     <div class="cell small-1 medium-3 large-4"></div>
     <!-- some styling to get a card for searching centered on the page -->
-    <div class="cell auto">
-      <div class="card align-middle" style="width: 75%; height: 300px; margin: 0 auto; background-color: burlywood;">
-        <div class="card-divider" style="background-color: burlywood;">
-        </div>
-        <div class="card-section">
-          <a class="align-left" href="#">
-            <h5>Bar Name</h5>
-          </a>
-          <h5 class="align">Brewery Type</h5>
-          <h5 class="align">Bar Address/Postal Code</h5>
-          <h5 class="align">Phone #</h5>
-        </div>
-        <div class="card-divider" style="background-color: burlywood;">
-          <a class="button primary " id="favorites-button" style="margin-bottom: 16px;">Add To Favs</a>
-          <a class="button primary " id="route-button" style="margin-bottom: 16px;">Add To Route</a>
-
-        </div>
-      </div>
+    <div class="cell auto" id="append-card">
     </div>
 
     <div class="cell small-1 medium-3 large-4"></div>
@@ -107,6 +101,26 @@
   <script src="./assets/js/api.js"></script>
   <script>
     $(document).foundation();
+
+    var card = $("<div class='card align-middle color'>")
+    var cardDivider = $("<div class='card-divider color'>")
+    var cardDividerButtons = $("<div class='card-divider color'>")
+    var cardSection = $("<div class='card-section'>")
+    
+    $("#append-card").append(card)
+    $(card).append(cardDivider)
+    $(card).append(cardSection)
+    $(cardSection).append("<a href='"+/*put the response.website here*/+"'> <h5>Bar Name: "+/*put the response.barname*/+"</h5></a>")
+    $(cardSection).append("<h5> Bar Type: "+/*put response.bartype here*/+"</h5>")
+    $(cardSection).append("<h5> Bar Address: "+/*put response.bar address here*/+"</h5>")
+    $(cardSection).append("<h5> Phone #:"+/*put response.phone# here*/+"</h5>")
+    $(card).append(cardDividerButtons)
+    $(cardDividerButtons).append("<a class='button primary ' id='favorites-button' style='margin-bottom: 16px;'>Add To Favs</a>")
+    $(cardDividerButtons).append("<a class='button primary ' id='route-button' style='margin-bottom: 16px;'>Add To Route</a>")
+    
+
+
+    
   </script>
 
 
