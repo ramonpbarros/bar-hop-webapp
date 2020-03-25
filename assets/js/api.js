@@ -22,6 +22,13 @@ var barCoords = [];
 var firstBarLat;
 var firstBarLng;
 
+//Marker labels
+var markerLabels = "ABCDEFIGHIJKLMNOPQRSTUVWXYZ";
+var markerLabelsIndex = 0;
+
+//Global variable map is set as
+var map;
+
 //Get the barId's for the bars the user saved 
 function getBarIds(){
     barId = JSON.parse(localStorage.getItem("barId"));
@@ -46,16 +53,29 @@ $.ajax({
     firstBarLat = barCoords[1]
     firstBarLng = barCoords[2]
     displayMap(firstBarLat,firstBarLng)
+    displayMarker(firstBarLat,firstBarLng)
 
 })
 
-//Creates map
+//Creates map based on the first bar saved
 function displayMap(lat, lng){
 
     //Creates and display a new map
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: lat, lng: lng},
         zoom: 15
     });
-
 }
+
+//Displays a marker on each of the  bars saved
+function  displayMarker(lat, lng){
+    var marker = new google.maps.Marker({
+        position: {lat: lat, lng: lng}, 
+        map: map,
+        label: markerLabels.charAt(markerLabelsIndex)
+    });
+
+    //Moves onto the next label
+    markerLabelsIndex++
+}
+
