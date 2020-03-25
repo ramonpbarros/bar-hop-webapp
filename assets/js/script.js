@@ -17,19 +17,21 @@ var zipCodeInput;
 var typeInput;
 // zip code search: #zip-code
 // search button: #search-button
-var zipCodeFromTextBoxID = "zip-code";
-var searchButtonID = "search-button";
+var zipCodeFromTextBoxID = "#zip-code";
+var searchButtonID = "#search-button";
 
 //===================== Functions =======================================
 // get Input from text box on Search click
 function getZipCodeInput(zipCodeFromText){
-    var zipCodeInput = $("#" + zipCodeFromText).val().trim();
+    var zipCodeInput = $(zipCodeFromText).val().trim();
+    console.log(zipCodeInput);// Works
     return zipCodeInput;
 }
 //get the text of type of bar selected
 function getBarTypeValue(barTypeFromDropID){
-    $("#" + barTypeFromDropID).change(function(){
-        var selectedText = $(this).find("option:selected").text();
+    $(barTypeFromDropID).change(function(){
+        var selectedText = $(this).find("option:selected").val();
+        console.log(selectedText);
         return selectedText;
     })
 }
@@ -48,11 +50,24 @@ function getBreweryDataUsingZipAndType(zipCodeSearch,type){
         url: "https://api.openbrewerydb.org/breweries?by_postal=" + zipCodeSearch + "&by_type=" + type,
         method: "GET"
     }).then(function(response){
+        // console.log(response);
         return response;
     })
 }
 //========================== End Functions ======================================================
 // ========================= Events ============================
-
+// Event when search button is pressed
+var data;
+$("#search-button").on("click", function(){
+    zipCodeInput = getZipCodeInput("#zip-code");
+    typeInput = $("#bar-type").val();
+    console.log(typeInput);
+    if(typeInput === "all"){
+        data = getBreweryDataUsingZip(zipCodeInput);
+    }else{
+        data = getBreweryDataUsingZipAndType(zipCodeInput,typeInput);
+    }
+    typeInput.pop();
+})
 // ========================= End Events
 getBreweryDataUsingZip("92123");
