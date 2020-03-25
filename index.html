@@ -1,18 +1,21 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hop Bar</title>
   <!-- Compressed CSS -->
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css"
     integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
     crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/styles/style.css">
 </head>
+
 <body>
-  <div class="title-bar" data-responsive-toggle="main-nav" data-hide-for="medium">
+  <div class="title-bar" data-responsive-toggle="main-nav" data-hide-for="large">
     <button class="menu-icon" type="button" data-toggle="main-nav"></button>
     <div class="title-bar-title">Bar Hop</div>
   </div>
@@ -31,15 +34,54 @@
       </ul>
     </div>
   </div>
+
+  <div class="grid-x">
+
+    <div class="cell small-4"></div>
+    <!-- some styling to get a card for searching centered on the page -->
+    <div class="cell auto">
+      <div class="card align-middle" style="width: 75%; height: 300px; margin: 0 auto; background-color: burlywood;">
+        <div class="card-divider" style="background-color: burlywood;">
+          <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
+          <a class="button primary " id="search-button">Search</a>
+        </div>
+        <div class="card-divider">
+          <label>What kind of Bars?
+            <select multiple>
+              <option value="micro">micro</option>
+              <option value="local">local</option>
+              <option value="regional">regional</option>
+              <option value="national">national</option>
+            </select>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cell small-4"></div>
+
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <!-- Compressed JavaScript -->
+
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js"
     integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA=="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
-  <script>$(document).foundation();</script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/api.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+
+
+
+
+
+
 </body>
+
 </html>
