@@ -3,3 +3,43 @@
     width: 500px;
     margin: 0 auto;
 }
+
+.card {
+    width: 75%; 
+    height: 300px; 
+    margin: 0 auto; 
+
+  }
+  .color {
+    background-color: #f3eee0;
+  }
+  .change-button {
+    background-color: #ae621f;
+    margin-right: 3px;
+    margin-bottom: 16px
+  }
+  .nav-color {
+    background-color: #383508;
+  }
+
+  #favorites-button {
+    margin-bottom: 16px;
+    border-radius: 5px 0 0 5px;
+  }
+
+  #route-button{
+    margin-bottom: 16px;
+    border-radius: 0 5px 5px 0;
+  }
+  a:link {
+    color: #ae621f;
+  }
+  a:visited {
+    color: #854916;
+  }
+  a:hover {
+    color: #92541d;
+  }
+  .card-section{
+    width: 90%;
+  }
