@@ -1,6 +1,6 @@
 //Variables to store data retrieved
-var id;
-var name;
+var barId;
+var breweryName;
 var breweryType;
 var street;
 var city;
@@ -11,7 +11,6 @@ var lon;
 var lat;
 var phone;
 var websiteUrl;
-
 //Var of user input to store zip code
 var zipCodeInput;
 var typeInput;
@@ -20,8 +19,6 @@ var data;
 // search button: #search-button
 var zipCodeFromTextBoxID = "#zip-code";
 var searchButtonID = "#search-button";
-
-
 
 //===================== Functions =======================================
 // get Input from text box on Search click
@@ -36,27 +33,71 @@ function getBreweryDataUsingZip(zipCodeSearch){
         url: "https://api.openbrewerydb.org/breweries?by_postal=" + zipCodeSearch,
         method: "GET"
     }).then(function(response){
-        var arr = response;
-        // Create an array of cards
+        console.log(response)
+        
+        //Create a card for each reutrned bar
         for(var i = 0; i < response.length; i++){
-            var card = $("<div class='card align-middle color'>")
-            var cardDividerButtons = $("<div class='card-divider color'>")
-            var cardSection = $("<div class='card-section'>")
+            
+            //Saving ajax data in each variable
+            websiteUrl = response[i].website_url
+            breweryName = response[i].name
+            breweryType = response[i].brewery_type
+            street = response[i].street
+            phone = response[i].phone
+            barId = response[i].id
 
-            $(cardSection).append("<h5>Bar Name: </h5><a target='_blank' href='"+response[i].url+"'> <h5>"+response[i].name+"</h5></a>")
-            $(cardSection).append("<h5> Bar Type: "+response[i].brewery_type+"</h5>")
-            $(cardSection).append("<h5> Bar Address: "+response[i].street+"</h5>")
-            $(cardSection).append("<h5> Phone #:"+response[i].phone+"</h5>")
-            $(cardDividerButtons).append("<a class='button change-button' id='favorites-button'>Add To Favs</a>")
-            $(cardDividerButtons).append("<a class='button change-button' id='route-button'>Add To Route</a>")
-            $(card).append(cardSection)
-            $(card).append(cardDividerButtons)
+            //Creating card elements and giving them their proper style
+            var card = $("<div>")
+            card.addClass("card align-middle color")
+
+            var cardDividerButtons = $("<div>")
+            cardDividerButtons.addClass("card-divider color")
+
+            var cardSection = $("<div>")
+            cardSection.addClass("card-section")
+
+
+            //Creating route button and adding all of its attributes
+            var routeButton = $("<button>")
+            routeButton.addClass("button change-button")
+            routeButton.attr("id","route-button")
+            routeButton.attr("barid", barId)
+            
+
+            //Setting route button text
+            routeButton.text("Add To Route")
+            
+
+            //Creating route button and adding all of its attributes
+            var favoritesButton = $("<button>")
+            favoritesButton.addClass("button change-button")
+            favoritesButton.attr("id","favorites-button")
+            favoritesButton.attr("barid", barId)
+            
+            //Setting favorites button text
+            favoritesButton.text("Add To Favs")
+            
+
+            //Appending buttons to card
+            cardDividerButtons.append(favoritesButton)
+            cardDividerButtons.append(routeButton)
+
+            //Append the following data to the card
+            cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>"+ breweryName +"</h5></a>")
+            cardSection.append("<h5> Bar Type: "+ breweryType +"</h5>")
+            cardSection.append("<h5> Bar Address: "+ street +"</h5>")
+            cardSection.append("<h5> Phone #:"+ phone +"</h5>")
+            
+
+            //Appending card proper location
+            card.append(cardSection)
+            card.append(cardDividerButtons)
             $("#append-card").append(card)
             $("#append-card").append("<br>");
         }
         // Create cards for each element in the array
-        console.log(response)
-       
+
+
     })
 }
 //Search by zip code and type
@@ -86,4 +127,22 @@ $("#search-button").on("click", function(){
     }
     // console.log(data);
 })
+
+
+//When 
+
+
+
+
+//When 
+
+
+//Add to add to favs button is clicked 
+
+//Save that bars id to local storage under the favoritesId key
+
+
+
+
+
 // ========================= End Events
