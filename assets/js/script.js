@@ -21,10 +21,7 @@ var data;
 var zipCodeFromTextBoxID = "#zip-code";
 var searchButtonID = "#search-button";
 
-var card = $("<div class='card align-middle color'>")
-var cardDivider = $("<div class='card-divider color'>")
-var cardDividerButtons = $("<div class='card-divider color'>")
-var cardSection = $("<div class='card-section'>")
+
 
 //===================== Functions =======================================
 // get Input from text box on Search click
@@ -42,6 +39,10 @@ function getBreweryDataUsingZip(zipCodeSearch){
         var arr = response;
         // Create an array of cards
         for(var i = 0; i < response.length; i++){
+            var card = $("<div class='card align-middle color'>")
+            var cardDivider = $("<div class='card-divider color'>")
+            var cardDividerButtons = $("<div class='card-divider color'>")
+            var cardSection = $("<div class='card-section'>")
             $(card).append(cardDivider)
             $(cardSection).append("<a href='"+response[i].url+"'> <h5>Bar Name: "+response[i].name+"</h5></a>")
             $(cardSection).append("<h5> Bar Type: "+response[i].brewery_type+"</h5>")
