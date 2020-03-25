@@ -27,14 +27,6 @@ function getZipCodeInput(zipCodeFromText){
     console.log(zipCodeInput);// Works
     return zipCodeInput;
 }
-//get the text of type of bar selected
-function getBarTypeValue(barTypeFromDropID){
-    $(barTypeFromDropID).change(function(){
-        var selectedText = $(this).find("option:selected").val();
-        console.log(selectedText);
-        return selectedText;
-    })
-}
 //Search by zip code only
 function getBreweryDataUsingZip(zipCodeSearch){
     $.ajax({
@@ -67,7 +59,6 @@ $("#search-button").on("click", function(){
     }else{
         data = getBreweryDataUsingZipAndType(zipCodeInput,typeInput);
     }
-    typeInput.pop();
 })
 // ========================= End Events
 getBreweryDataUsingZip("92123");
