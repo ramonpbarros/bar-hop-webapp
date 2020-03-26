@@ -13,6 +13,15 @@ var nextBarLng;
 var markerLabels = "ABCDEFIGHIJKLMNOPQRSTUVWXYZ";
 var markerLabelsIndex = 0;
 
+//Data to save
+var websiteUrl;
+var breweryName;
+var breweryType;
+var street;
+var city;
+var zi;
+var phone;
+
 //Global variable map is set as
 var map;
 
@@ -50,7 +59,7 @@ $.ajax({
     createCard(websiteUrl, breweryName, breweryType, street, phone)
 
     //Creating a marker for that first bar
-    displayMarker(firstBarLat, firstBarLng)
+    displayMarker(firstBarLat, firstBarLng, breweryName, street)
 
 
     //Ajax call for lat and lng of the rest if the bars
@@ -74,7 +83,7 @@ $.ajax({
             nextBarLng = parseFloat(result.longitude)
 
             createCard(websiteUrl, breweryName, breweryType, street, phone)
-            displayMarker(nextBarLat, nextBarLng)
+            displayMarker(nextBarLat, nextBarLng, breweryName, street)
 
         })
     }
@@ -90,14 +99,34 @@ function displayMap(lat, lng) {
     });
 }
 
-//Displays a marker on each of the  bars saved
-function displayMarker(lat, lng) {
+//Displays a marker on each of the  bars saved   
+function displayMarker(lat, lng, barName, barAddress) {
+
+
+    //The location in link format
+    var text = "<p>" +barName + "</p>" + "<a href='https://maps.google.com/?q=" + barAddress + "' target='_blank'>" + barAddress + "</a>"
 
     //Creates a new marker
     var marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: map,
         label: markerLabels.charAt(markerLabelsIndex)
+
+    });
+
+    //Checks if mareker was clicked
+    marker.addListener('click', function() {
+
+        //Will focus on the marker
+        map.setZoom(13);
+        map.setCenter(marker.getPosition());
+        
+        //Will create a pop up showing address and name of the bar
+        infowindow.open(map, marker);
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+        content: text
     });
 
     //Moves onto the next label
