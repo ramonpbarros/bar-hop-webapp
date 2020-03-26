@@ -141,8 +141,84 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
         url: "https://api.openbrewerydb.org/breweries?by_postal=" + zipCodeSearch + "&by_type=" + type,
         method: "GET"
     }).then(function (response) {
-        // console.log(response);
-        //return response;
+         //Create a card for each reutrned bar
+         console.log(response);
+         for (var i = 0; i < response.length; i++) {
+
+            //Saving ajax data in each variable
+            websiteUrl = response[i].website_url
+            breweryName = response[i].name
+            breweryType = response[i].brewery_type
+            street = response[i].street
+            phone = response[i].phone
+            barId = response[i].id
+
+            //Creating card elements and giving them their proper style
+            var card = $("<div>")
+            card.addClass("card align-middle color")
+
+            var cardDividerButtons = $("<div>")
+            cardDividerButtons.addClass("card-divider color")
+
+            var cardSection = $("<div>")
+            cardSection.addClass("card-section")
+
+
+            //Creating route button and adding all of its attributes
+            var routeButton = $("<button>")
+            routeButton.addClass("button change-button")
+            routeButton.attr({ id: "route-button", barid: barId })
+            routeButton.attr("barid", barId)
+
+
+            //Setting route button text
+            routeButton.text("Add To Route")
+
+
+            //Creating route button and adding all of its attributes
+            var favoritesButton = $("<button>")
+            favoritesButton.addClass("button change-button")
+            favoritesButton.attr({ id: "favorites-button", barid: barId })
+            // favoritesButton.attr("barid", barId)
+
+            //Setting favorites button text
+            favoritesButton.text("Add To Favs")
+
+
+            //Appending buttons to card
+            cardDividerButtons.append(favoritesButton)
+            cardDividerButtons.append(routeButton)
+
+            //Append the following data to the card
+            cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+            cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
+            cardSection.append("<h5> Bar Address: " + street + "</h5>")
+            cardSection.append("<h5> Phone #:" + phone + "</h5>")
+
+
+            //Appending card proper location
+            card.append(cardSection)
+            card.append(cardDividerButtons)
+            $("#append-card").append(card)
+            $("#append-card").append("<br>");
+        }
+        $(document).on("click", "#favorites-button", function () {
+            var favBarId = $(this)[0].attributes[2].value;
+            if (favArray.indexOf(favBarId) < 0) {
+                favArray.push(favBarId);
+                saveLocalStorage(favArray, "favArray");
+                getFavLocalStorage();
+            };
+        })
+        $(document).on("click", "#route-button", function () {
+            var favBarId = $(this)[0].attributes[2].value;
+            if (routeArray.indexOf(favBarId) < 0) {
+                routeArray.push(favBarId);
+                saveLocalStorage(routeArray, "routeArray");
+                getRouteLocalStorage();
+            };
+
+        })
     })
 }
 //========================== End Functions ======================================================
