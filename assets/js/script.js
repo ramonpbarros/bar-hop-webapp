@@ -124,7 +124,6 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             };
 
         })
-
     })
 }
 function getFavLocalStorage() {
