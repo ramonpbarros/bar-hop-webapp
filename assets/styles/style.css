@@ -1,43 +1,48 @@
-#map{
+#map {
     height: 500px;
     width: 500px;
     margin: 0 auto;
 }
 
 .card {
-
-    height: 300px; 
     margin: 0 auto;
-  }
-  .color {
+}
+
+.color {
     background-color: #f3eee0;
-  }
-  .change-button {
+}
+
+.change-button {
     background-color: #ae621f;
     margin-right: 3px;
-  }
-  .nav-color {
-    background-color: #383508;
-  }
+}
 
-  #favorites-button {
+.nav-color {
+    background-color: #383508;
+}
+
+#favorites-button {
     margin-bottom: 16px;
     border-radius: 5px 0 0 5px;
-  }
+}
 
-  #route-button{
+#route-button {
     margin-bottom: 16px;
     border-radius: 0 5px 5px 0;
-  }
-  a:link {
+}
+
+a:link {
     color: #ae621f;
-  }
-  a:visited {
+}
+
+a:visited {
     color: #854916;
-  }
-  a:hover {
+}
+
+a:hover {
     color: #92541d;
-  }
-  .card-section{
+}
+
+.card-section {
     width: 90%;
-  }
+}
