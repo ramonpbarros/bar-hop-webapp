@@ -20,6 +20,9 @@ var data;
 var zipCodeFromTextBoxID = "#zip-code";
 var searchButtonID = "#search-button";
 
+var arr1 = []
+var arr2 = []
+
 //===================== Functions =======================================
 // get Input from text box on Search click
 function getZipCodeInput(zipCodeFromText){
@@ -60,7 +63,7 @@ function getBreweryDataUsingZip(zipCodeSearch){
             //Creating route button and adding all of its attributes
             var routeButton = $("<button>")
             routeButton.addClass("button change-button")
-            routeButton.attr("id","route-button")
+            routeButton.attr({id: "route-button", barid: barId, barname: breweryName})
             routeButton.attr("barid", barId)
             
 
@@ -71,8 +74,8 @@ function getBreweryDataUsingZip(zipCodeSearch){
             //Creating route button and adding all of its attributes
             var favoritesButton = $("<button>")
             favoritesButton.addClass("button change-button")
-            favoritesButton.attr("id","favorites-button")
-            favoritesButton.attr("barid", barId)
+            favoritesButton.attr({id: "favorites-button", barid: barId, barname: breweryName})
+            // favoritesButton.attr("barid", barId)
             
             //Setting favorites button text
             favoritesButton.text("Add To Favs")
@@ -95,10 +98,27 @@ function getBreweryDataUsingZip(zipCodeSearch){
             $("#append-card").append(card)
             $("#append-card").append("<br>");
         }
-        // Create cards for each element in the array
-
+        $(document).on("click","#favorites-button", function(){
+            console.log($(this))
+            var favBarId = $(this)[0].attributes[2].value;
+            var favBarName = $(this)[0].attributes[3].value;
+            arr1.push(favBarId);
+            console.log(arr1)
+            saveLocalStorage(arr1, "arr1");
+        })
+        $(document).on("click","#route-button", function(){
+            console.log($(this))
+            var favBarId = $(this)[0].attributes[2].value;
+            var favBarName = $(this)[0].attributes[3].value;
+            arr2.push(favBarId);
+            saveLocalStorage(arr2, "arr2");
+        })
 
     })
+}
+
+function saveLocalStorage (arr, arrayNum){
+    localStorage.setItem(arrayNum, JSON.stringify(arr))
 }
 //Search by zip code and type
 function getBreweryDataUsingZipAndType(zipCodeSearch,type){
