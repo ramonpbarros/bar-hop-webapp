@@ -98,7 +98,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
             cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
             cardSection.append("<h5> Bar Address: " + street + "</h5>")
-            cardSection.append("<h5> Phone #:" + phone + "</h5>")
+            cardSection.append("<h5> Phone #: " + phone + "</h5>")
 
 
             //Appending card proper location
