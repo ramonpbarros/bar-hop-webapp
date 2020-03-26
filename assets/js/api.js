@@ -19,8 +19,9 @@ var breweryName;
 var breweryType;
 var street;
 var city;
-var zi;
+var zip;
 var phone;
+
 
 //Global variable map is set as
 var map;
@@ -42,12 +43,18 @@ $.ajax({
 
 }).then(function (result) {
 
+    console.log(result)
     //Variables to create a card
     websiteUrl = result.website_url;
     breweryName = result.name;
     breweryType = result.brewery_type;
     street = result.street;
     phone = result.phone;
+    city = result.city;
+    zip = result.postal_code
+
+    fullAddress = street + ", " + city + ", " + zip
+    
 
     //Saving lat and lng to firstBar variables
     firstBarLat = parseFloat(result.latitude)
@@ -59,7 +66,7 @@ $.ajax({
     createCard(websiteUrl, breweryName, breweryType, street, phone)
 
     //Creating a marker for that first bar
-    displayMarker(firstBarLat, firstBarLng, breweryName, street)
+    displayMarker(firstBarLat, firstBarLng, breweryName, fullAddress)
 
 
     //Ajax call for lat and lng of the rest if the bars
@@ -78,12 +85,16 @@ $.ajax({
             breweryType = result.brewery_type;
             street = result.street;
             phone = result.phone;
+            city = result.city;
+            zip = result.postal_code
+        
+            fullAddress = street + ", " + city + ", " + zip
 
             nextBarLat = parseFloat(result.latitude)
             nextBarLng = parseFloat(result.longitude)
 
             createCard(websiteUrl, breweryName, breweryType, street, phone)
-            displayMarker(nextBarLat, nextBarLng, breweryName, street)
+            displayMarker(nextBarLat, nextBarLng, breweryName, fullAddress)
 
         })
     }
