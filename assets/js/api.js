@@ -1,23 +1,7 @@
-// =======================================For Testing===============================
-var barId = [286, 430, 573, 814, ]
-
-
-//To test values saved in local storage
-function saveBarIds(){
-    localStorage.setItem("barId", JSON.stringify(barId))
-}
-
-saveBarIds()
-
-
-
 // =======================================Actual code==============================
 
 //Assign bar's user saved here
 var barId = [];
-
-//Assign name coords for each of the bars used here 
-var barCoords = [];
 
 var firstBarLat;
 var firstBarLng;
@@ -34,7 +18,7 @@ var map;
 
 //Get the barId's for the bars the user saved 
 function getBarIds(){
-    barId = JSON.parse(localStorage.getItem("barId"));
+    barId = JSON.parse(localStorage.getItem("routeArray"));
 }
 
 
@@ -49,6 +33,13 @@ $.ajax({
 
 }).then(function(result){
 
+    //Variables to create a card
+    websiteUrl = result.website_url;
+    breweryName = result.name;
+    breweryType = result.brewery_type;
+    street = result.street;
+    phone = result.phone;
+
     //Saving lat and lng to firstBar variables
     firstBarLat = parseFloat(result.latitude)
     firstBarLng = parseFloat(result.longitude)
@@ -56,8 +47,11 @@ $.ajax({
     //Creates a map for using the first bar as the center
     displayMap(firstBarLat,firstBarLng)
 
+    createCard(websiteUrl, breweryName, breweryType, street, phone)
+
     //Creating a marker for that first bar
     displayMarker(firstBarLat,firstBarLng)
+
 
     //Ajax call for lat and lng of the rest if the bars
     for(var i = 1; i < barId.length;i++){
@@ -68,9 +62,20 @@ $.ajax({
             method: "GET"
             
         }).then(function(result){
-            var nextBarLat = parseFloat(result.latitude)
-            var nextBarLng = parseFloat(result.longitude)
+
+            //variables to create a card
+            websiteUrl = result.website_url;
+            breweryName = result.name;
+            breweryType = result.brewery_type;
+            street = result.street;
+            phone = result.phone;
+
+            nextBarLat = parseFloat(result.latitude)
+            nextBarLng = parseFloat(result.longitude)
+
+            createCard(websiteUrl, breweryName, breweryType, street, phone)
             displayMarker(nextBarLat, nextBarLng)
+
         })
     } 
 })
@@ -99,3 +104,30 @@ function  displayMarker(lat, lng){
     markerLabelsIndex++
 }
 
+
+//Create a card for each brewery
+function createCard(websiteUrl, breweryName, breweryType, street, phone){
+
+    var card = $("<div>")
+    card.addClass("card align-middle color")
+
+    var cardDividerButtons = $("<div>")
+    cardDividerButtons.addClass("card-divider color")
+
+    var cardSection = $("<div>")
+    cardSection.addClass("card-section")
+
+
+     //Append the following data to the card
+     cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+     cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
+     cardSection.append("<h5> Bar Address: " + street + "</h5>")
+     cardSection.append("<h5> Phone #:" + phone + "</h5>")
+     cardSection.append("<p>Bar: " + markerLabels.charAt(markerLabelsIndex) + "</p>")
+
+
+     //Appending card proper location
+     card.append(cardSection)
+     card.append(cardDividerButtons)
+     $("#append-card").append(card)
+}

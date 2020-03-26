@@ -1,62 +1,64 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hop Bar</title>
-  <!-- Compressed CSS -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hop Bar</title>
+    <!-- Compressed CSS -->
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css"
-    integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/styles/style.css">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css"
+      integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+  </head>
 
-<body style="background-color: #cdc6b3;">
-  <div class="title-bar nav-color" data-responsive-toggle="main-nav" data-hide-for="xxxlarge">
-    <button class="menu-icon" type="button" data-toggle="main-nav"></button>
-    <div class="title-bar-title"></div>
-  </div>
-  <div class="top-bar" id="main-nav">
-    <div class="top-bar-left">
-      <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
-        <li class="menu-text">Bar Hop</li>
+  <body style="background-color: #cdc6b3;">
+
+    <div class="title-bar nav-color" data-responsive-toggle="main-nav" data-hide-for="xxxlarge">
+      <button class="menu-icon" type="button" data-toggle="main-nav"></button>
+      <div class="title-bar-title"></div>
+    </div>
+
+    <div class="top-bar" id="main-nav">
+      <div class="top-bar-left">
+        <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
+
+          <li class="menu-text">Bar Hop</li>
+
           <ul class="top-bar-right menu horizontal">
             <a href="index.html">Home</a>
             <a href="favorites.html">Favorites</a>
             <a href="routes.html">Routes</a>
           </ul>
-      </ul>
+          
+        </ul>
+      </div>
     </div>
+
+    <br>
+
+<div id="map"></div>
+
+  <div class="grid-x align-center" >
+
+      <!-- some styling to get a card for searching centered on the page -->
+      <div class="cell" id="append-card" style="width: 500px;"></div>
+
   </div>
 
-  <br>
-
-  <div id="map"></div>
 
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxIjU3p3Lz1S92HI-A9gDsASC97b32aF8"></script>
+    <script src="./assets/js/api.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js"
-    integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA=="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxIjU3p3Lz1S92HI-A9gDsASC97b32aF8"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/api.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-
-
-
-
-
-
+    <script>
+      $(document).foundation();
+    </script>
 
 </body>
-
 </html>
