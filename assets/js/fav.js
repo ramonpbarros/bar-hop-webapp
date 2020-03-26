@@ -1,13 +1,15 @@
 //Assign bar's user saved here
 var barId = [];
+var routeArray = [];
 
-//Get the barId's for the bars the user saved 
-function getBarIds() {
-    barId = JSON.parse(localStorage.getItem("favArray"));
+getRouteLocalStorage();
+getBarIds()
+
+if (routeArray === null) {
+    var routeArray = [];
 }
 
-
-getBarIds()
+console.log(routeArray);
 
 for (var i = 0; i < barId.length; i++) {
 
@@ -27,7 +29,27 @@ for (var i = 0; i < barId.length; i++) {
 
         createCard(websiteUrl, breweryName, breweryType, street, phone)
 
+        $(document).on("click", "#route-button", function () {
+            var favBarId = $(this)[0].attributes[2].value;
+            if (routeArray.indexOf(favBarId) < 0) {
+                routeArray.push(favBarId);
+                saveLocalStorage(routeArray, "routeArray");
+                getRouteLocalStorage();
+            };
+
+        })
     })
+}
+
+//Get the barId's for the bars the user saved 
+function getBarIds() {
+    barId = JSON.parse(localStorage.getItem("favArray"));
+}
+function getRouteLocalStorage() {
+    routeArray = JSON.parse(localStorage.getItem("routeArray"));
+}
+function saveLocalStorage(arr, arrayNum) {
+    localStorage.setItem(arrayNum, JSON.stringify(arr));
 }
 
 //Create a card for each brewery
