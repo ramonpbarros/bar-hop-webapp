@@ -33,14 +33,14 @@ for(var i = 0; i < barId.length;i++){
 //Create a card for each brewery
 function createCard(websiteUrl, breweryName, breweryType, street, phone){
 
-    var card = $("<div>")
-    card.addClass("card align-middle color")
+    var card = $("<div>");
+    card.addClass("card align-middle color");
 
-    var cardDividerButtons = $("<div>")
-    cardDividerButtons.addClass("card-divider color")
+    var cardDividerButtons = $("<div>");
+    cardDividerButtons.addClass("card-di;vider color")
 
-    var cardSection = $("<div>")
-    cardSection.addClass("card-section")
+    var cardSection = $("<div>");
+    cardSection.addClass("card-section");
 
 
      //Append the following data to the card
