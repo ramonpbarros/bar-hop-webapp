@@ -3,7 +3,7 @@ var barId = [];
 
 //Get the barId's for the bars the user saved 
 function getBarIds(){
-    barId = JSON.parse(localStorage.getItem("routeArray"));
+    barId = JSON.parse(localStorage.getItem("favArray"));
 }
 
 
