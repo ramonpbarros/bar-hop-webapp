@@ -115,7 +115,7 @@ function displayMarker(lat, lng, barName, barAddress) {
 
 
     //The location in link format
-    var text = "<p>" +barName + "</p>" + "<a href='https://maps.google.com/?q=" + barAddress + "' target='_blank'>" + barAddress + "</a>"
+    var text = "<p>" +barName + "</p>" + "<a href='https://maps.google.com/?q=" + barName + "' target='_blank'>" + barAddress + "</a>"
 
     //Creates a new marker
     var marker = new google.maps.Marker({
