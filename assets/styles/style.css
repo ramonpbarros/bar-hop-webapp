@@ -5,10 +5,9 @@
 }
 
 .card {
-    width: 75%; 
-    height: 300px; 
-    margin: 0 auto; 
 
+    height: 300px; 
+    margin: 0 auto;
   }
   .color {
     background-color: #f3eee0;
@@ -16,7 +15,6 @@
   .change-button {
     background-color: #ae621f;
     margin-right: 3px;
-    margin-bottom: 16px
   }
   .nav-color {
     background-color: #383508;
