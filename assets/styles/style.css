@@ -21,9 +21,16 @@
     margin-right: 3px;
 }
 
+.change-button:focus {
+    background-color: #161311;
+}
+
+.change-button:active {
+    background-color: #161311;
+}
+
 .nav-color {
     background-image: url(../images/recovered-wood.jpg);
-    );
 }
 
 #favorites-button {
