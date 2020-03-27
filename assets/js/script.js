@@ -37,7 +37,7 @@ console.log(favArray, routeArray);
 // get Input from text box on Search click
 function getZipCodeInput(zipCodeFromText) {
     var zipCodeInput = $(zipCodeFromText).val().trim();
-    console.log(zipCodeInput);// Works
+    console.log(zipCodeInput); // Works
     return zipCodeInput;
 }
 //Search by zip code only
@@ -45,7 +45,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
     $.ajax({
         url: "https://api.openbrewerydb.org/breweries?by_postal=" + zipCodeSearch,
         method: "GET"
-    }).then(function (response) {
+    }).then(function(response) {
 
         //Create a card for each reutrned bar
         for (var i = 0; i < response.length; i++) {
@@ -65,6 +65,9 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             var cardDividerButtons = $("<div>")
             cardDividerButtons.addClass("card-divider color")
 
+            var cardDivider = $("<div>")
+            cardDivider.addClass("card-divider color wood")
+
             var cardSection = $("<div>")
             cardSection.addClass("card-section")
 
@@ -84,7 +87,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             var favoritesButton = $("<button>")
             favoritesButton.addClass("button change-button")
             favoritesButton.attr({ id: "favorites-button", barid: barId })
-            // favoritesButton.attr("barid", barId)
+                // favoritesButton.attr("barid", barId)
 
             //Setting favorites button text
             favoritesButton.text("Add To Favs")
@@ -95,19 +98,20 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             cardDividerButtons.append(routeButton)
 
             //Append the following data to the card
-            cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
-            cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
-            cardSection.append("<h5> Bar Address: " + street + "</h5>")
-            cardSection.append("<h5> Phone #: " + phone + "</h5>")
+            cardSection.append("<h5><b>Bar Name:</b> </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+            cardSection.append("<h5><b>Bar Type:</b> " + breweryType + "</h5>")
+            cardSection.append("<h5><b>Bar Address:</b> " + street + "</h5>")
+            cardSection.append("<h5><b>Phone #:</b> " + phone + "</h5>")
 
 
             //Appending card proper location
+            card.append(cardDivider)
             card.append(cardSection)
             card.append(cardDividerButtons)
             $("#append-card").append(card)
             $("#append-card").append("<br>");
         }
-        $(document).on("click", "#favorites-button", function () {
+        $(document).on("click", "#favorites-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
             if (favArray.indexOf(favBarId) < 0) {
                 favArray.push(favBarId);
@@ -115,7 +119,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
                 getFavLocalStorage();
             };
         })
-        $(document).on("click", "#route-button", function () {
+        $(document).on("click", "#route-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
             if (routeArray.indexOf(favBarId) < 0) {
                 routeArray.push(favBarId);
@@ -126,12 +130,15 @@ function getBreweryDataUsingZip(zipCodeSearch) {
         })
     })
 }
+
 function getFavLocalStorage() {
-    favArray = JSON.parse(localStorage.getItem("favArray"));    
+    favArray = JSON.parse(localStorage.getItem("favArray"));
 }
+
 function getRouteLocalStorage() {
     routeArray = JSON.parse(localStorage.getItem("routeArray"));
 }
+
 function saveLocalStorage(arr, arrayNum) {
     localStorage.setItem(arrayNum, JSON.stringify(arr));
 }
@@ -140,10 +147,10 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
     $.ajax({
         url: "https://api.openbrewerydb.org/breweries?by_postal=" + zipCodeSearch + "&by_type=" + type,
         method: "GET"
-    }).then(function (response) {
-         //Create a card for each reutrned bar
-         console.log(response);
-         for (var i = 0; i < response.length; i++) {
+    }).then(function(response) {
+        //Create a card for each reutrned bar
+        console.log(response);
+        for (var i = 0; i < response.length; i++) {
 
             //Saving ajax data in each variable
             websiteUrl = response[i].website_url
@@ -160,6 +167,9 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
             var cardDividerButtons = $("<div>")
             cardDividerButtons.addClass("card-divider color")
 
+            var cardDivider = $("<div>")
+            cardDivider.addClass("card-divider color wood")
+
             var cardSection = $("<div>")
             cardSection.addClass("card-section")
 
@@ -179,7 +189,7 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
             var favoritesButton = $("<button>")
             favoritesButton.addClass("button change-button")
             favoritesButton.attr({ id: "favorites-button", barid: barId })
-            // favoritesButton.attr("barid", barId)
+                // favoritesButton.attr("barid", barId)
 
             //Setting favorites button text
             favoritesButton.text("Add To Favs")
@@ -189,20 +199,22 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
             cardDividerButtons.append(favoritesButton)
             cardDividerButtons.append(routeButton)
 
+
             //Append the following data to the card
-            cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
-            cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
-            cardSection.append("<h5> Bar Address: " + street + "</h5>")
-            cardSection.append("<h5> Phone #:" + phone + "</h5>")
+            cardSection.append("<h5><b>Bar Name:</b> </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+            cardSection.append("<h5><b>Bar Type:</b> " + breweryType + "</h5>")
+            cardSection.append("<h5><b>Bar Address:</b> " + street + "</h5>")
+            cardSection.append("<h5><b>Phone #:<b>" + phone + "</h5>")
 
 
             //Appending card proper location
+            card.append(cardDivider)
             card.append(cardSection)
             card.append(cardDividerButtons)
             $("#append-card").append(card)
             $("#append-card").append("<br>");
         }
-        $(document).on("click", "#favorites-button", function () {
+        $(document).on("click", "#favorites-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
             if (favArray.indexOf(favBarId) < 0) {
                 favArray.push(favBarId);
@@ -210,7 +222,7 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
                 getFavLocalStorage();
             };
         })
-        $(document).on("click", "#route-button", function () {
+        $(document).on("click", "#route-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
             if (routeArray.indexOf(favBarId) < 0) {
                 routeArray.push(favBarId);
@@ -224,7 +236,7 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
 //========================== End Functions ======================================================
 // ========================= Events ============================
 // Event when search button is pressed
-$("#search-button").on("click", function () {
+$("#search-button").on("click", function() {
     $("#append-card").empty();
     zipCodeInput = getZipCodeInput("#zip-code");
     typeInput = $("#bar-type").val();

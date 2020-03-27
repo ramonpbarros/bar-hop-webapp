@@ -20,7 +20,7 @@ for (var i = 0; i < barId.length; i++) {
         url: "https://api.openbrewerydb.org/breweries/" + barId[i],
         method: "GET"
 
-    }).then(function (result) {
+    }).then(function(result) {
 
         //variables to create a card
         websiteUrl = result.website_url;
@@ -31,7 +31,7 @@ for (var i = 0; i < barId.length; i++) {
 
         createCard(websiteUrl, breweryName, breweryType, street, phone)
 
-        $(document).on("click", "#route-button", function () {
+        $(document).on("click", "#route-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
             if (routeArray.indexOf(favBarId) < 0) {
                 routeArray.push(favBarId);
@@ -43,7 +43,7 @@ for (var i = 0; i < barId.length; i++) {
     })
 }
 
-$(document).on("click", "#remove-button", function () {
+$(document).on("click", "#remove-button", function() {
     var removeAttr = $(this)[0].attributes[2].value;
 
     for (var j = 0; j < arr.length; j++) {
@@ -53,7 +53,7 @@ $(document).on("click", "#remove-button", function () {
 
             var removeItem = barId[j];
             console.log(removeItem)
-            barId = $.grep(barId, function (value) {
+            barId = $.grep(barId, function(value) {
                 return value != removeItem;
             })
         }
@@ -65,6 +65,7 @@ $(document).on("click", "#remove-button", function () {
 function getBarIds() {
     barId = JSON.parse(localStorage.getItem("favArray"));
 }
+
 function getRouteLocalStorage() {
     routeArray = JSON.parse(localStorage.getItem("routeArray"));
 }
@@ -107,10 +108,10 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     cardDividerButtons.append(routeButton);
 
     //Append the following data to the card
-    cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>");
-    cardSection.append("<h5> Bar Type: " + breweryType + "</h5>");
-    cardSection.append("<h5> Bar Address: " + street + "</h5>");
-    cardSection.append("<h5> Phone #:" + phone + "</h5>");
+    cardSection.append("<h5><b>Bar Name:</b> </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>");
+    cardSection.append("<h5><b>Bar Type:</b> " + breweryType + "</h5>");
+    cardSection.append("<h5><b>Bar Address:</b> " + street + "</h5>");
+    cardSection.append("<h5><b>Phone #:</b> " + phone + "</h5>");
 
     //Appending card proper location
     card.append(cardSection);
