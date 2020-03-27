@@ -59,6 +59,7 @@ $(document).on("click", "#remove-button", function() {
         }
     }
     localStorage.setItem('favArray', JSON.stringify(barId));
+    location.reload();
 });
 
 // Get the barId's for the bars the user saved 
