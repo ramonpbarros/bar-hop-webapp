@@ -12,6 +12,7 @@ var nextBarLng;
 //Marker labels
 var markerLabels = "ABCDEFIGHIJKLMNOPQRSTUVWXYZ";
 var markerLabelsIndex = 0;
+var markers = []
 
 //Data to save
 var websiteUrl;
@@ -21,6 +22,7 @@ var street;
 var city;
 var zip;
 var phone;
+var currentId;
 
 
 //Global variable map is set as
@@ -31,9 +33,7 @@ function getBarIds() {
     barId = JSON.parse(localStorage.getItem("routeArray"));
 }
 
-
 getBarIds()
-
 
 // Make an ajax request for the first id's name lat and lng
 $.ajax({
@@ -41,10 +41,9 @@ $.ajax({
     url: "https://api.openbrewerydb.org/breweries/" + barId[0],
     method: "GET"
 
-}).then(function(result) {
+}).then(function (result) {
 
-    console.log(result)
-        //Variables to create a card
+    //Variables to create a card
     websiteUrl = result.website_url;
     breweryName = result.name;
     breweryType = result.brewery_type;
@@ -52,9 +51,10 @@ $.ajax({
     phone = result.phone;
     city = result.city;
     zip = result.postal_code
+    currentId = barId[0]
 
     fullAddress = street + ", " + city + ", " + zip
-
+    
 
     //Saving lat and lng to firstBar variables
     firstBarLat = parseFloat(result.latitude)
@@ -63,21 +63,21 @@ $.ajax({
     //Creates a map for using the first bar as the center
     displayMap(firstBarLat, firstBarLng)
 
-    createCard(websiteUrl, breweryName, breweryType, street, phone)
+    createCard(websiteUrl, breweryName, breweryType, street, phone, currentId)
 
     //Creating a marker for that first bar
     displayMarker(firstBarLat, firstBarLng, breweryName, fullAddress)
 
 
     //Ajax call for lat and lng of the rest if the bars
-    for (var i = 1; i < barId.length; i++) {
+    for (let i = 1; i < barId.length; i++) {
 
         $.ajax({
 
             url: "https://api.openbrewerydb.org/breweries/" + barId[i],
             method: "GET"
 
-        }).then(function(result) {
+        }).then(function (result) {
 
             //variables to create a card
             websiteUrl = result.website_url;
@@ -87,17 +87,21 @@ $.ajax({
             phone = result.phone;
             city = result.city;
             zip = result.postal_code
-
+            currentId = barId[i]
+        
             fullAddress = street + ", " + city + ", " + zip
 
             nextBarLat = parseFloat(result.latitude)
             nextBarLng = parseFloat(result.longitude)
 
-            createCard(websiteUrl, breweryName, breweryType, street, phone)
+            createCard(websiteUrl, breweryName, breweryType, street, phone, currentId)
             displayMarker(nextBarLat, nextBarLng, breweryName, fullAddress)
 
         })
+        
     }
+
+    console.log(markers)
 })
 
 //Creates map based on the first bar saved
@@ -106,7 +110,7 @@ function displayMap(lat, lng) {
     //Creates and displays a new map
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: lat, lng: lng },
-        zoom: 10
+        zoom: 11
     });
 }
 
@@ -115,15 +119,16 @@ function displayMarker(lat, lng, barName, barAddress) {
 
 
     //The location in link format
-    var text = "<p>" + barName + "</p>" + "<a href='https://maps.google.com/?q=" + barName + "' target='_blank'>" + barAddress + "</a>"
+    var text = "<p>" +barName + "</p>" + "<a href='https://maps.google.com/?q=" + barName + "' target='_blank'>" + barAddress + "</a>"
 
     //Creates a new marker
     var marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: map,
         label: markerLabels.charAt(markerLabelsIndex)
-
     });
+
+    markers.push(marker)
 
     //Checks if mareker was clicked
     marker.addListener('click', function() {
@@ -131,7 +136,7 @@ function displayMarker(lat, lng, barName, barAddress) {
         //Will focus on the marker
         map.setZoom(13);
         map.setCenter(marker.getPosition());
-
+        
         //Will create a pop up showing address and name of the bar
         infowindow.open(map, marker);
     });
@@ -144,17 +149,16 @@ function displayMarker(lat, lng, barName, barAddress) {
     markerLabelsIndex++
 }
 
-
 //Create a card for each brewery
-function createCard(websiteUrl, breweryName, breweryType, street, phone) {
+function createCard(websiteUrl, breweryName, breweryType, street, phone, id) {
+
 
     var card = $("<div>")
     card.addClass("card align-middle color")
 
     var removeRouteButton = $("<button>")
-    removeRouteButton.addClass("button change-button")
-    removeRouteButton.attr({ id: "remove-route-button", barid: barId })
-    removeRouteButton.attr("barid", barId)
+    removeRouteButton.addClass("button change-button remove-route-button")
+    removeRouteButton.attr("barid", id)  
     removeRouteButton.text("Remove from Route")
 
     var cardDividerButtons = $("<div>")
@@ -163,22 +167,41 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     var cardSection = $("<div>")
     cardSection.addClass("card-section")
 
-
     //Appending buttons to card
     cardDividerButtons.append(removeRouteButton)
 
-
     //Append the following data to the card
-    cardSection.append("<h5><b>Bar Name:</b> </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
-    cardSection.append("<h5><b>Bar Type:</b> " + breweryType + "</h5>")
-    cardSection.append("<h5><b>Bar Address:</b> " + street + "</h5>")
-    cardSection.append("<h5><b>Phone #:</b> " + phone + "</h5>")
-    cardSection.append("<p><b>Bar:</b> " + markerLabels.charAt(markerLabelsIndex) + "</p>")
-
+    cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+    cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
+    cardSection.append("<h5> Bar Address: " + street + "</h5>")
+    cardSection.append("<h5> Phone #: " + phone + "</h5>")
+    cardSection.append("<p>Bar: " + markerLabels.charAt(markerLabelsIndex) + "</p>")
 
     //Appending card proper location
     card.append(cardSection)
     card.append(cardDividerButtons)
     $("#append-card").append(card)
     $("#append-card").append("<br>");
+}
+
+//Removes bar Id 
+$(document).on("click", ".remove-route-button", function(){
+
+    var barToRemove = ($(this)[0].attributes.barid.value)
+
+    var barArrayLocation = barId.indexOf(barToRemove)
+
+    console.log(barArrayLocation)
+    barId.splice((barArrayLocation),1)
+
+    localStorage.setItem('routeArray', JSON.stringify(barId));
+
+    //Removes card from html page
+    $(this).parent().parent().remove()
+
+    removeMarker(barArrayLocation)
+})
+
+function removeMarker(whichMarker){
+    markers[whichMarker].setMap();
 }
