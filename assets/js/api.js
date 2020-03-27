@@ -41,10 +41,10 @@ $.ajax({
     url: "https://api.openbrewerydb.org/breweries/" + barId[0],
     method: "GET"
 
-}).then(function (result) {
+}).then(function(result) {
 
     console.log(result)
-    //Variables to create a card
+        //Variables to create a card
     websiteUrl = result.website_url;
     breweryName = result.name;
     breweryType = result.brewery_type;
@@ -54,7 +54,7 @@ $.ajax({
     zip = result.postal_code
 
     fullAddress = street + ", " + city + ", " + zip
-    
+
 
     //Saving lat and lng to firstBar variables
     firstBarLat = parseFloat(result.latitude)
@@ -77,7 +77,7 @@ $.ajax({
             url: "https://api.openbrewerydb.org/breweries/" + barId[i],
             method: "GET"
 
-        }).then(function (result) {
+        }).then(function(result) {
 
             //variables to create a card
             websiteUrl = result.website_url;
@@ -87,7 +87,7 @@ $.ajax({
             phone = result.phone;
             city = result.city;
             zip = result.postal_code
-        
+
             fullAddress = street + ", " + city + ", " + zip
 
             nextBarLat = parseFloat(result.latitude)
@@ -115,7 +115,7 @@ function displayMarker(lat, lng, barName, barAddress) {
 
 
     //The location in link format
-    var text = "<p>" +barName + "</p>" + "<a href='https://maps.google.com/?q=" + barName + "' target='_blank'>" + barAddress + "</a>"
+    var text = "<p>" + barName + "</p>" + "<a href='https://maps.google.com/?q=" + barName + "' target='_blank'>" + barAddress + "</a>"
 
     //Creates a new marker
     var marker = new google.maps.Marker({
@@ -131,7 +131,7 @@ function displayMarker(lat, lng, barName, barAddress) {
         //Will focus on the marker
         map.setZoom(13);
         map.setCenter(marker.getPosition());
-        
+
         //Will create a pop up showing address and name of the bar
         infowindow.open(map, marker);
     });
@@ -169,11 +169,11 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
 
 
     //Append the following data to the card
-    cardSection.append("<h5>Bar Name: </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
-    cardSection.append("<h5> Bar Type: " + breweryType + "</h5>")
-    cardSection.append("<h5> Bar Address: " + street + "</h5>")
-    cardSection.append("<h5> Phone #: " + phone + "</h5>")
-    cardSection.append("<p>Bar: " + markerLabels.charAt(markerLabelsIndex) + "</p>")
+    cardSection.append("<h5><b>Bar Name:</b> </h5><a target='_blank' href='" + websiteUrl + "'> <h5>" + breweryName + "</h5></a>")
+    cardSection.append("<h5><b>Bar Type:</b> " + breweryType + "</h5>")
+    cardSection.append("<h5><b>Bar Address:</b> " + street + "</h5>")
+    cardSection.append("<h5><b>Phone #:</b> " + phone + "</h5>")
+    cardSection.append("<p><b>Bar:</b> " + markerLabels.charAt(markerLabelsIndex) + "</p>")
 
 
     //Appending card proper location

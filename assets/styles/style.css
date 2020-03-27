@@ -9,16 +9,21 @@
 }
 
 .color {
-    background-color: #f3eee0;
+    background-color: #e7e2dc;
+}
+
+.color-text {
+    color: #e7e2dc;
 }
 
 .change-button {
-    background-color: #ae621f;
+    background-color: #29231f;
     margin-right: 3px;
 }
 
 .nav-color {
-    background-color: #383508;
+    background-image: url(../images/recovered-wood.jpg);
+    );
 }
 
 #favorites-button {
@@ -29,6 +34,12 @@
 #route-button {
     margin-bottom: 16px;
     border-radius: 0 5px 5px 0;
+}
+
+#search-button {
+    border-radius: 0 5px 5px 0;
+    margin-left: 3px;
+    height: 36px;
 }
 
 a:link {
@@ -45,4 +56,24 @@ a:hover {
 
 .card-section {
     width: 90%;
+}
+
+.wood {
+    background-image: url(../images/recovered-wood.jpg);
+    width: 100%;
+}
+
+body {
+    background-color: #29231f;
+}
+
+#remove-route-button {
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+
+#remove-button {
+    width: 118px;
+    margin-bottom: 16px;
+    border-radius: 5px 0 0 5px;
 }
