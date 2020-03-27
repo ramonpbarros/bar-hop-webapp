@@ -1,6 +1,7 @@
 //Assign bar's user saved here
 var barId = [];
 var routeArray = [];
+var arr = [];
 
 getRouteLocalStorage();
 getBarIds()
@@ -8,8 +9,9 @@ getBarIds()
 if (routeArray === null) {
     var routeArray = [];
 }
-
-console.log(routeArray);
+if (barId === null) {
+    var barId = []
+}
 
 for (var i = 0; i < barId.length; i++) {
 
@@ -41,13 +43,32 @@ for (var i = 0; i < barId.length; i++) {
     })
 }
 
-//Get the barId's for the bars the user saved 
+$(document).on("click", "#remove-button", function () {
+    var removeAttr = $(this)[0].attributes[2].value;
+
+    for (var j = 0; j < arr.length; j++) {
+        var arrAttr = arr[j][0].attributes[1].value;
+        if (arrAttr === removeAttr) {
+            arr[j].empty()
+
+            var removeItem = barId[j];
+            console.log(removeItem)
+            barId = $.grep(barId, function (value) {
+                return value != removeItem;
+            })
+        }
+    }
+    localStorage.setItem('favArray', JSON.stringify(barId));
+});
+
+// Get the barId's for the bars the user saved 
 function getBarIds() {
     barId = JSON.parse(localStorage.getItem("favArray"));
 }
 function getRouteLocalStorage() {
     routeArray = JSON.parse(localStorage.getItem("routeArray"));
 }
+
 function saveLocalStorage(arr, arrayNum) {
     localStorage.setItem(arrayNum, JSON.stringify(arr));
 }
@@ -57,6 +78,7 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
 
     var card = $("<div>");
     card.addClass("card align-middle color");
+    card.attr("barname", breweryName);
 
     var cardDividerButtons = $("<div>");
     cardDividerButtons.addClass("card-divider color")
@@ -75,7 +97,7 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     //Creating route button and adding all of its attributes
     var removeButton = $("<button>");
     removeButton.addClass("button change-button");
-    removeButton.attr({ id: "favorites-button", barid: barId });
+    removeButton.attr({ id: "remove-button", barname: breweryName });
 
     //Setting favorites button text
     removeButton.text("Remove");
@@ -93,7 +115,10 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     //Appending card proper location
     card.append(cardSection);
     card.append(cardDividerButtons);
+
     $("#append-card").append(card);
     $("#append-card").append("<br>");
+
+    arr.push(card)
 
 }
