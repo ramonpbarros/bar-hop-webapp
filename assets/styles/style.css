@@ -6,6 +6,7 @@
 
 .card {
     margin: 0 auto;
+    border-radius: 10px;
 }
 
 .color {
@@ -31,6 +32,7 @@
 
 .nav-color {
     background-image: url(../images/recovered-wood.jpg);
+    height: 50px;
 }
 
 #favorites-button {
