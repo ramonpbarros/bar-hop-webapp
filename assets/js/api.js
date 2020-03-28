@@ -203,5 +203,6 @@ $(document).on("click", ".remove-route-button", function(){
 })
 
 function removeMarker(whichMarker){
-    markers[whichMarker].setMap();
+    markers[whichMarker].setMap(null);
+    markers.splice(whichMarker,1)
 }
