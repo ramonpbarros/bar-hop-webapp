@@ -28,6 +28,7 @@ for (var i = 0; i < barId.length; i++) {
         breweryType = result.brewery_type;
         street = result.street;
         phone = result.phone;
+        barIdFav = result.id;
 
         createCard(websiteUrl, breweryName, breweryType, street, phone)
 
@@ -85,13 +86,16 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     var cardDividerButtons = $("<div>");
     cardDividerButtons.addClass("card-divider color")
 
+    var cardDivider = $("<div>")
+    cardDivider.addClass("card-divider color wood")
+
     var cardSection = $("<div>");
     cardSection.addClass("card-section");
 
     //Creating route button and adding all of its attributes
     var routeButton = $("<button>");
     routeButton.addClass("button change-button");
-    routeButton.attr({ id: "route-button", barid: barId });
+    routeButton.attr({ id: "route-button", barid: barIdFav });
 
     //Setting route button text
     routeButton.text("Add To Route");
@@ -115,6 +119,7 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     cardSection.append("<h5><b>Phone #:</b> " + phone + "</h5>");
 
     //Appending card proper location
+    card.append(cardDivider)
     card.append(cardSection);
     card.append(cardDividerButtons);
 
