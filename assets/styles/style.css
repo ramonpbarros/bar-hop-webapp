@@ -32,7 +32,7 @@
 
 .nav-color {
     background-image: url(../images/recovered-wood.jpg);
-    height: 50px;
+    height: 150px;
 }
 
 #favorites-button {
@@ -85,4 +85,9 @@ body {
     width: 118px;
     margin-bottom: 16px;
     border-radius: 5px 0 0 5px;
+}
+
+.logo {
+    height: 145px;
+    margin: 0 auto;
 }
