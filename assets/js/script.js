@@ -117,6 +117,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
                 favArray.push(favBarId);
                 saveLocalStorage(favArray, "favArray");
                 getFavLocalStorage();
+                $(this).text("Added to Favs ✓")
             };
         })
         $(document).on("click", "#route-button", function() {
@@ -125,6 +126,7 @@ function getBreweryDataUsingZip(zipCodeSearch) {
                 routeArray.push(favBarId);
                 saveLocalStorage(routeArray, "routeArray");
                 getRouteLocalStorage();
+                $(this).text("Added to Route ✓")
             };
 
         })

@@ -38,6 +38,8 @@ for (var i = 0; i < barId.length; i++) {
                 routeArray.push(favBarId);
                 saveLocalStorage(routeArray, "routeArray");
                 getRouteLocalStorage();
+                $(this).text("Added ✓")
+                // routeButton.text("Added ✓");
             };
 
         })
