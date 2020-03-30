@@ -1,70 +1,66 @@
-#map {
-    height: 500px;
-    width: 500px;
-    margin: 0 auto;
-}
 
-.card {
-    margin: 0 auto;
-    border-radius: 10px;
-}
+/* ---- particles.js container ---- */
 
-.color {
-    background-color: #e7e2dc;
-}
-
-.color-text {
-    color: #e7e2dc;
-}
-
-.change-button {
+#particles-js {
+    z-index: -99999;
+    position: absolute;
+    width: 100%;
+    height: 600vh;
     background-color: #29231f;
-    margin-right: 3px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
-.change-button:focus {
-    background-color: #161311;
-}
-
-.change-button:active {
-    background-color: #161311;
-}
-
-.nav-color {
+/* Nav Styles */
+.title-bar {
+    height: 60px;
     background-image: url(../images/recovered-wood.jpg);
-    height: 150px;
 }
 
-#favorites-button {
-    margin-bottom: 16px;
-    border-radius: 5px 0 0 5px;
+.top-bar {
+    background-image: url(../images/recovered-wood.jpg);
+    height: 60px;
 }
 
-#route-button {
-    margin-bottom: 16px;
-    border-radius: 0 5px 5px 0;
+.top-bar ul {
+    background-color: transparent;
 }
 
-#search-button {
-    border-radius: 0 5px 5px 0;
-    margin-left: 3px;
-    height: 36px;
+.top-bar a {
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-a:link {
-    color: #ae621f;
+.logo {
+    height: 50px;
 }
 
-a:visited {
-    color: #854916;
+.mobile-nav-bar {
+    height: 60px;
 }
 
-a:hover {
-    color: #92541d;
+
+/* Main Content Global Styles */
+.grid-container{
+    margin-top: 20px;
+    width: 50%;
 }
 
-.card-section {
-    width: 90%;
+
+
+.card{
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.card,
+.card-divider{
+    background-color: #e7e2dc;
 }
 
 .wood {
@@ -72,22 +68,107 @@ a:hover {
     width: 100%;
 }
 
-body {
+/* Global Button styles */
+.button{
     background-color: #29231f;
+    height: 20%;
 }
 
-#remove-route-button {
+.button:focus {
+    background-color: #161311;
+}
+
+.button:active {
+    background-color: #161311;
+}
+
+/* Index.html styles */
+.barhop-main-logo{
+    width: 350px;
+    margin-right: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}    
+
+.intro-area{
+    position: relative;
+    margin-bottom: 30px;
+}    
+
+.intro-area p{
+    position: absolute;
+    color: white;
+    font-size: 180%;
+    top: 10%;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.search-card{
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.search-button {
+    margin-left: 3px;
+    border-radius: 0 5px 5px 0;
+    height: 36px;
+}
+
+.favorites-button {
+    margin-bottom: 20px;
+    border-radius: 5px 0 0 5px;
+    margin-right: 2px;
+}
+
+.route-button {
+    margin-bottom: 20px;
+    border-radius: 0 5px 5px 0;
+    margin-left: 2px;
+}
+
+
+/* Route.html styles */
+.map{
+    height: 500px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+
+.remove-route-button {
     margin-bottom: 16px;
     border-radius: 5px;
+    margin: 0 auto;
 }
 
-#remove-button {
-    width: 118px;
+
+/* Favorite.html styles */
+.remove-favorite-button {
     margin-bottom: 16px;
     border-radius: 5px 0 0 5px;
 }
 
-.logo {
-    height: 145px;
-    margin: 0 auto;
+/* Media Queries */
+
+@media screen and (max-width: 1022px){
+    /* Index.html styles */
+    .intro-area p{
+        position: relative;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 660px){
+    /* Global styles */
+    .grid-container{
+        width: 300px;
+    }
+
 }

@@ -3,12 +3,8 @@ var barId;
 var breweryName;
 var breweryType;
 var street;
-var city;
-var state;
 var postalCode;
 var country;
-var lon;
-var lat;
 var phone;
 var websiteUrl;
 //Var of user input to store zip code
@@ -33,6 +29,8 @@ if (routeArray === null) {
 }
 console.log(favArray, routeArray);
 
+
+
 //===================== Functions =======================================
 // get Input from text box on Search click
 function getZipCodeInput(zipCodeFromText) {
@@ -40,6 +38,9 @@ function getZipCodeInput(zipCodeFromText) {
     console.log(zipCodeInput); // Works
     return zipCodeInput;
 }
+
+
+
 //Search by zip code only
 function getBreweryDataUsingZip(zipCodeSearch) {
     $.ajax({
@@ -59,11 +60,14 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             barId = response[i].id
 
             //Creating card elements and giving them their proper style
+            var cell = $("<div>")
+            cell.addClass("cell medium-12 large-6")
+
             var card = $("<div>")
-            card.addClass("card align-middle color")
+            card.addClass("card")
 
             var cardDividerButtons = $("<div>")
-            cardDividerButtons.addClass("card-divider color")
+            cardDividerButtons.addClass("card-divider align-center")
 
             var cardDivider = $("<div>")
             cardDivider.addClass("card-divider color wood")
@@ -72,25 +76,24 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             cardSection.addClass("card-section")
 
 
-            //Creating route button and adding all of its attributes
-            var routeButton = $("<button>")
-            routeButton.addClass("button change-button")
-            routeButton.attr({ id: "route-button", barid: barId })
-            routeButton.attr("barid", barId)
+           //Creating route button and adding all of its attributes
+           var routeButton = $("<button>")
+           routeButton.addClass("button route-button")
+           routeButton.attr({ id: "route-button", barid: barId })
+           routeButton.attr("barid", barId)
 
 
-            //Setting route button text
-            routeButton.text("Add To Route")
+           //Setting route button text
+           routeButton.text("Add To Route")
 
 
-            //Creating route button and adding all of its attributes
-            var favoritesButton = $("<button>")
-            favoritesButton.addClass("button change-button")
-            favoritesButton.attr({ id: "favorites-button", barid: barId })
-                // favoritesButton.attr("barid", barId)
+           //Creating route button and adding all of its attributes
+           var favoritesButton = $("<button>")
+           favoritesButton.addClass("button favorites-button")
+           favoritesButton.attr({ id: "favorites-button", barid: barId })
 
-            //Setting favorites button text
-            favoritesButton.text("Add To Favs")
+           //Setting favorites button text
+           favoritesButton.text("Add To Favs")
 
 
             //Appending buttons to card
@@ -108,8 +111,10 @@ function getBreweryDataUsingZip(zipCodeSearch) {
             card.append(cardDivider)
             card.append(cardSection)
             card.append(cardDividerButtons)
-            $("#append-card").append(card)
-            $("#append-card").append("<br>");
+
+            cell.append(card)
+            $("#append-card").append(cell)
+
         }
         $(document).on("click", "#favorites-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
@@ -163,11 +168,14 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
             barId = response[i].id
 
             //Creating card elements and giving them their proper style
+            var cell = $("<div>")
+            cell.addClass("cell medium-12 large-6")
+
             var card = $("<div>")
-            card.addClass("card align-middle color")
+            card.addClass("card ")
 
             var cardDividerButtons = $("<div>")
-            cardDividerButtons.addClass("card-divider color")
+            cardDividerButtons.addClass("card-divider align-center")
 
             var cardDivider = $("<div>")
             cardDivider.addClass("card-divider color wood")
@@ -178,7 +186,7 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
 
             //Creating route button and adding all of its attributes
             var routeButton = $("<button>")
-            routeButton.addClass("button change-button")
+            routeButton.addClass("button route-button")
             routeButton.attr({ id: "route-button", barid: barId })
             routeButton.attr("barid", barId)
 
@@ -189,9 +197,8 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
 
             //Creating route button and adding all of its attributes
             var favoritesButton = $("<button>")
-            favoritesButton.addClass("button change-button")
+            favoritesButton.addClass("button favorites-button")
             favoritesButton.attr({ id: "favorites-button", barid: barId })
-                // favoritesButton.attr("barid", barId)
 
             //Setting favorites button text
             favoritesButton.text("Add To Favs")
@@ -213,8 +220,10 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
             card.append(cardDivider)
             card.append(cardSection)
             card.append(cardDividerButtons)
-            $("#append-card").append(card)
-            $("#append-card").append("<br>");
+
+            cell.append(card)
+            $("#append-card").append(cell)
+
         }
         $(document).on("click", "#favorites-button", function() {
             var favBarId = $(this)[0].attributes[2].value;
@@ -235,7 +244,8 @@ function getBreweryDataUsingZipAndType(zipCodeSearch, type) {
         })
     })
 }
-//========================== End Functions ======================================================
+
+
 // ========================= Events ============================
 // Event when search button is pressed
 $("#search-button").on("click", function() {
@@ -245,29 +255,8 @@ $("#search-button").on("click", function() {
     console.log(typeInput);
     if (typeInput === "all") {
         data = getBreweryDataUsingZip(zipCodeInput);
-        // console.log(data)
     } else {
         data = getBreweryDataUsingZipAndType(zipCodeInput, typeInput);
-        // console.log(data);
     }
-    // console.log(data);
+
 })
-
-
-//When 
-
-
-
-
-//When 
-
-
-//Add to add to favs button is clicked 
-
-//Save that bars id to local storage under the favoritesId key
-
-
-
-
-
-// ========================= End Events

@@ -81,12 +81,15 @@ function saveLocalStorage(arr, arrayNum) {
 //Create a card for each brewery
 function createCard(websiteUrl, breweryName, breweryType, street, phone) {
 
+    var cell = $("<div>")
+    cell.addClass("cell medium-12 large-6")
+
     var card = $("<div>");
     card.addClass("card align-middle color");
     card.attr("barname", breweryName);
 
     var cardDividerButtons = $("<div>");
-    cardDividerButtons.addClass("card-divider color")
+    cardDividerButtons.addClass("card-divider align-center")
 
     var cardDivider = $("<div>")
     cardDivider.addClass("card-divider color wood")
@@ -96,7 +99,7 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
 
     //Creating route button and adding all of its attributes
     var routeButton = $("<button>");
-    routeButton.addClass("button change-button");
+    routeButton.addClass("button route-button");
     routeButton.attr({ id: "route-button", barid: barIdFav });
 
     //Setting route button text
@@ -104,7 +107,7 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
 
     //Creating route button and adding all of its attributes
     var removeButton = $("<button>");
-    removeButton.addClass("button change-button");
+    removeButton.addClass("button remove-favorite-button");
     removeButton.attr({ id: "remove-button", barname: breweryName });
 
     //Setting favorites button text
@@ -125,8 +128,8 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone) {
     card.append(cardSection);
     card.append(cardDividerButtons);
 
-    $("#append-card").append(card);
-    $("#append-card").append("<br>");
+    cell.append(card)
+    $("#append-card").append(cell);
 
     arr.push(card)
 
