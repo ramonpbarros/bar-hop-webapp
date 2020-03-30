@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
         crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <title>Bar Routes</title>
+    <title>BarHop</title>
 </head>
 
 <body>
@@ -45,13 +45,43 @@
     <!-- Main Content Area -->
     <div class="grid-container">
 
-        <!-- Map is displayed here -->
-        <div class="grid-x">
-            <div class="cell map" id="map"></div>
+
+        <!-- Main Search Area -->
+        <div class="grid-x ">
+
+            <div class="cell">
+                <div class="card search-card align-middle">
+
+                    <div class="card-divider">
+                        <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
+                        <button class="button search-button" id="search-button">Search</button>
+                    </div>
+
+                    <div class="card-divider">
+                        <label><b>What kind of Bars?</b>
+                            <select id="bar-type">
+                            <option value="all">All</option>
+                            <option value="micro">Micro</option>
+                            <option value="regional">Regional</option>
+                            <option value="brewpub">Brewpub</option>
+                            <option value="large">Large</option>
+                            <option value="planning">Planning</option>
+                            <option value="bar">Bar</option>
+                            <option value="contract">Contract</option>
+                            <option value="proprietor">Proprietor</option>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            
         </div>
 
         <!-- Bar Info Dynamically Posted Here -->
-        <div class="grid-x" id="append-card"></div>
+        <div class="grid-x" id="append-card">
+
+        </div>
     </div>
 
     
@@ -71,11 +101,8 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="./assets/js/particles.js"></script>
 
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxIjU3p3Lz1S92HI-A9gDsASC97b32aF8"></script>
-
     <!-- Custom Scripts -->
-    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/script.js"></script>
 
 </body>
 

@@ -58,6 +58,22 @@
     margin-right: 5px;
 }
 
+.landing-button{
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    margin-top: 7%;
+    line-height: 1.25;
+}
+
+.white{
+    color: white;
+}
+.landing-width{
+    width: 70%;
+    margin: 0 auto;
+}
+
 .card,
 .card-divider{
     background-color: #e7e2dc;
@@ -72,6 +88,7 @@
 .button{
     background-color: #29231f;
     height: 20%;
+    color: white;
 }
 
 .button:focus {
@@ -97,16 +114,14 @@
 }    
 
 .intro-area p{
-    position: absolute;
     color: white;
     font-size: 180%;
-    top: 10%;
-    margin-left: 20px;
-    text-align: left;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .search-card{
-    margin-top: 20px;
+    margin-top: 100px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 5px;
@@ -154,16 +169,13 @@
     border-radius: 5px 0 0 5px;
 }
 
+.home-page{
+    background-color: #29231f;
+}
+
 /* Media Queries */
 
-@media screen and (max-width: 1022px){
-    /* Index.html styles */
-    .intro-area p{
-        position: relative;
-        text-align: center;
-        margin: 0;
-    }
-}
+
 
 @media screen and (max-width: 660px){
     /* Global styles */
