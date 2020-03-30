@@ -11,6 +11,18 @@
     background-position: 50% 50%;
 }
 
+a:link {
+    color: #ae621f;
+}
+
+a:visited {
+    color: #854916;
+}
+
+a:hover {
+    color: #92541d;
+}
+
 
 /* Nav Styles */
 
@@ -20,7 +32,7 @@
 }
 
 .top-bar {
-    background-color: #e7e2dc;
+    background-image: url(../images/recovered-wood.jpg);
     height: 60px;
 }
 
@@ -29,7 +41,7 @@
 }
 
 .top-bar a {
-    color: white;
+    color: #e7e2dc;
     font-size: 20px;
     font-weight: 600;
 }
@@ -56,18 +68,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 5px;
     margin-right: 5px;
-}
-
-a:link {
-    color: #ae621f;
-}
-
-a:visited {
-    color: #854916;
-}
-
-a:hover {
-    color: #92541d;
 }
 
 .card,
@@ -114,7 +114,7 @@ a:hover {
 
 .intro-area p {
     position: absolute;
-    color: white;
+    color: #e7e2dc;
     font-size: 180%;
     top: 10%;
     margin-left: 20px;
@@ -180,6 +180,16 @@ a:hover {
         position: relative;
         text-align: center;
         margin: 0;
+    }
+    /* Styling top bar with screen size change */
+    .top-bar {
+        background-color: #e7e2dc;
+        height: 60px;
+    }
+    .top-bar a {
+        color: #e7e2dc;
+        font-size: 20px;
+        font-weight: 600;
     }
 }
 
