@@ -1,4 +1,3 @@
-
 /* ---- particles.js container ---- */
 
 #particles-js {
@@ -12,14 +11,16 @@
     background-position: 50% 50%;
 }
 
+
 /* Nav Styles */
+
 .title-bar {
     height: 60px;
     background-image: url(../images/recovered-wood.jpg);
 }
 
 .top-bar {
-    background-image: url(../images/recovered-wood.jpg);
+    background-color: #e7e2dc;
     height: 60px;
 }
 
@@ -30,7 +31,7 @@
 .top-bar a {
     color: white;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .logo {
@@ -43,14 +44,13 @@
 
 
 /* Main Content Global Styles */
-.grid-container{
+
+.grid-container {
     margin-top: 20px;
     width: 50%;
 }
 
-
-
-.card{
+.card {
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -58,8 +58,20 @@
     margin-right: 5px;
 }
 
+a:link {
+    color: #ae621f;
+}
+
+a:visited {
+    color: #854916;
+}
+
+a:hover {
+    color: #92541d;
+}
+
 .card,
-.card-divider{
+.card-divider {
     background-color: #e7e2dc;
 }
 
@@ -68,8 +80,10 @@
     width: 100%;
 }
 
+
 /* Global Button styles */
-.button{
+
+.button {
     background-color: #29231f;
     height: 20%;
 }
@@ -82,21 +96,23 @@
     background-color: #161311;
 }
 
+
 /* Index.html styles */
-.barhop-main-logo{
+
+.barhop-main-logo {
     width: 350px;
     margin-right: 5px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-}    
+}
 
-.intro-area{
+.intro-area {
     position: relative;
     margin-bottom: 30px;
-}    
+}
 
-.intro-area p{
+.intro-area p {
     position: absolute;
     color: white;
     font-size: 180%;
@@ -105,7 +121,7 @@
     text-align: left;
 }
 
-.search-card{
+.search-card {
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -133,13 +149,13 @@
 
 
 /* Route.html styles */
-.map{
+
+.map {
     height: 500px;
     width: 100%;
     margin: 0 auto;
     margin-top: 25px;
 }
-
 
 .remove-route-button {
     margin-bottom: 16px;
@@ -149,26 +165,27 @@
 
 
 /* Favorite.html styles */
+
 .remove-favorite-button {
     margin-bottom: 16px;
     border-radius: 5px 0 0 5px;
 }
 
+
 /* Media Queries */
 
-@media screen and (max-width: 1022px){
+@media screen and (max-width: 1022px) {
     /* Index.html styles */
-    .intro-area p{
+    .intro-area p {
         position: relative;
         text-align: center;
         margin: 0;
     }
 }
 
-@media screen and (max-width: 660px){
+@media screen and (max-width: 660px) {
     /* Global styles */
-    .grid-container{
+    .grid-container {
         width: 300px;
     }
-
 }
