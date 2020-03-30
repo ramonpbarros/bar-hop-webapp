@@ -152,17 +152,19 @@ function displayMarker(lat, lng, barName, barAddress) {
 //Create a card for each brewery
 function createCard(websiteUrl, breweryName, breweryType, street, phone, id) {
 
+    var cell = $("<div>")
+    cell.addClass("cell medium-12 large-6")
 
     var card = $("<div>")
-    card.addClass("card align-middle color")
+    card.addClass("card")
 
     var removeRouteButton = $("<button>")
-    removeRouteButton.addClass("button change-button remove-route-button")
+    removeRouteButton.addClass("button remove-route-button")
     removeRouteButton.attr("barid", id)  
     removeRouteButton.text("Remove from Route")
 
     var cardDividerButtons = $("<div>")
-    cardDividerButtons.addClass("card-divider color")
+    cardDividerButtons.addClass("card-divider align-center")
 
     var cardSection = $("<div>")
     cardSection.addClass("card-section")
@@ -180,8 +182,10 @@ function createCard(websiteUrl, breweryName, breweryType, street, phone, id) {
     //Appending card proper location
     card.append(cardSection)
     card.append(cardDividerButtons)
-    $("#append-card").append(card)
-    $("#append-card").append("<br>");
+
+    cell.append(card)
+
+    $("#append-card").append(cell);
 }
 
 //Removes bar Id 
@@ -197,7 +201,7 @@ $(document).on("click", ".remove-route-button", function(){
     localStorage.setItem('routeArray', JSON.stringify(barId));
 
     //Removes card from html page
-    $(this).parent().parent().remove()
+    $(this).parent().parent().parent().remove()
 
     removeMarker(barArrayLocation)
 })

@@ -5,93 +5,116 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bar Hop Home</title>
-    <!-- Compressed CSS -->
-    <link rel="icon" href="./assets/images/barhop-favicon.svg" type="image/svg" sizes="20x20">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
         crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/styles/style.css">
+    <title></title>
 </head>
 
 <body>
-    <div class="title-bar nav-color" data-responsive-toggle="main-nav" data-hide-for="xxxlarge">
+
+    <!-- Nav Bar -->
+    <div class="title-bar" data-responsive-toggle="main-nav" data-hide-for="large">
+        <img class="logo" src="./assets/images/barhop-logo.svg" alt="bar-hop logo">
         <button class="menu-icon" type="button" data-toggle="main-nav"></button>
-        <img class="logo" src="./assets/images/barhop-logo.svg">
     </div>
-    <div class="top-bar" id="main-nav">
-        <div class="top-bar-left">
-            <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
-                <ul class="top-bar-left menu horizontal">
-                    <a href="index.html">Home</a>
-                    <a href="favorites.html">Favorites</a>
-                    <a href="routes.html">Routes</a>
-                </ul>
+
+
+    <nav class="top-bar" id="main-nav">
+
+        <div class="top-bar-left show-for-large">
+            <img class="logo" src="./assets/images/barhop-logo.svg" alt="bar-hop-logo">
+        </div>
+
+        <div class="top-bar-right">
+            <ul class="dropdown vetical large-horizontal menu" data-responsive-menu>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./favorites.html">Favorites</a></li>
+                <li><a href="./routes.html">Routes</a></li>
             </ul>
         </div>
-    </div>
 
-    <br>
+    </nav>
 
-    <div class="grid-x">
 
-        <div class="cell small-1 medium-3 large-4"></div>
-        <!-- some styling to get a card for searching centered on the page -->
-        <div class="cell auto">
-            <div class="card align-middle color">
-                <div class="card-divider color">
-                    <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
-                    <button class="button change-button" id="search-button">Search</button>
-                </div>
-                <div class="card-divider color">
-                    <label><b>What kind of Bars?</b>
-            <select id="bar-type">
-              <option value="all">All</option>
-              <option value="micro">Micro</option>
-              <option value="regional">Regional</option>
-              <option value="brewpub">Brewpub</option>
-              <option value="large">Large</option>
-              <option value="planning">Planning</option>
-              <option value="bar">Bar</option>
-              <option value="contract">Contract</option>
-              <option value="proprietor">Proprietor</option>
-            </select>
-          </label>
-                </div>
+    <!-- Particles Implementation -->
+    <div id="particles-js"></div>
 
+
+
+    <!-- Main Content Area -->
+    <div class="grid-container">
+
+        <!-- Main Logo Area -->
+        <div class="grid-x intro-area">
+
+            <div class="cell medium-12 large-6">
+                <img class="barhop-main-logo"src="./assets/images/barhop-logo.svg" alt="">
             </div>
+
+            <div class="cell medium-12 large-6">
+                <p>Welcome to BARHOP,  <br> The beginning of your barhopping journey</p>
+            </div>
+
         </div>
 
-        <div class="cell small-1 medium-3 large-4"></div>
+        <!-- Main Search Area -->
+        <div class="grid-x ">
 
+            <div class="cell">
+                <div class="card search-card align-middle">
+
+                    <div class="card-divider">
+                        <input type="text" id="zip-code" placeholder="Please Enter Zip Code" style="height: 100%;">
+                        <button class="button search-button" id="search-button">Search</button>
+                    </div>
+
+                    <div class="card-divider">
+                        <label><b>What kind of Bars?</b>
+                            <select id="bar-type">
+                            <option value="all">All</option>
+                            <option value="micro">Micro</option>
+                            <option value="regional">Regional</option>
+                            <option value="brewpub">Brewpub</option>
+                            <option value="large">Large</option>
+                            <option value="planning">Planning</option>
+                            <option value="bar">Bar</option>
+                            <option value="contract">Contract</option>
+                            <option value="proprietor">Proprietor</option>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Bar Info Dynamically Posted Here -->
+        <div class="grid-x" id="append-card">
+
+        </div>
     </div>
 
-    <br> <br>
+    
 
-    <div class="grid-x">
-
-        <div class="cell small-1 medium-3 large-4"></div>
-        <!-- some styling to get a card for searching centered on the page -->
-        <div class="cell auto" id="append-card"></div>
-
-        <div class="cell small-1 medium-3 large-4"></div>
-
-    </div>
-
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+    <!-- Foundation -->
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA=="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
-    <script src="./assets/js/script.js"></script>
     <script>
         $(document).foundation();
     </script>
 
+    <!-- Particles  -->
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="./assets/js/particles.js"></script>
 
-
-
-
-
+    <!-- Custom Scripts -->
+    <script src="./assets/js/script.js"></script>
 
 </body>
 
