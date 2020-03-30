@@ -183,11 +183,12 @@ a:hover {
     }
     /* Styling top bar with screen size change */
     .top-bar {
+        background-image: url();
         background-color: #e7e2dc;
         height: 60px;
     }
     .top-bar a {
-        color: #e7e2dc;
+        color: #ae621f;
         font-size: 20px;
         font-weight: 600;
     }
